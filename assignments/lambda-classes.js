@@ -50,13 +50,13 @@ class Instructor extends Person {
 
 
 class Student extends Person {
-    constructor ({previousBackground, className, favSubjects, grade, graduated}) {
+    constructor ({previousBackground, className, favSubjects, grade, graduated = false}) {
         super(...arguments)
         this.previousBackground = previousBackground;
         this.className = className;
         this.favSubjects = favSubjects;
         this.grade = grade;
-        this.graduated = graduated ? graduated : false;
+        this.graduated = graduated
     }
     listsSubjects() {
         let mesg = this.favSubjects;
@@ -255,11 +255,11 @@ space();
 console.log(`//<====================GRADING II===========================>//`);
 console.log('\n');
 
-console.log(guillermo.grading(devin, false));
-console.log(jamie.grading(winnieSong, false));
+console.log(dustin.grading(devin, false));
+console.log(dan.grading(winnieSong, false));
 console.log(jamie.grading(alexis, false));
-console.log(jamie.grading(sam, false));
-console.log(jamie.grading(mike, false));
+console.log(dan.grading(sam, false));
+console.log(dan.grading(mike, false));
 
 displayUpdate(everyone);
 
@@ -276,7 +276,7 @@ console.log(`//<====================GRADING FINAL===========================>//`
 console.log('\n');
 
 // Hidden extra grading so they can pass
-guillermo.grading(devin, true);
+dan.grading(devin, true);
 jamie.grading(winnieSong, true);
 jamie.grading(alexis, true);
 jamie.grading(sam, true);
@@ -285,9 +285,9 @@ jamie.grading(mike, true);
 
 console.log(guillermo.grading(devin, true));
 console.log(jamie.grading(winnieSong, true));
-console.log(jamie.grading(alexis, true));
-console.log(jamie.grading(sam, true));
-console.log(jamie.grading(mike, true));
+console.log(dustin.grading(alexis, true));
+console.log(dan.grading(sam, true));
+console.log(guillermo.grading(mike, true));
 
 displayUpdate(everyone);
 
