@@ -32,10 +32,10 @@ class Instructor extends Person {
         this.catchPhrase = catchPhrase;
     }
     demo(subject) {
-        `${this.name} says, "Today we are learning about ${subject}."`
+        return `${this.name} says, "Today we are learning about ${subject}."`
     }
     gradeGo(student, subject) {
-        `${this.name} says, "${student.name} got a prefect score on ${subject}! Great job."`
+        return `${this.name} says, "${student.name} got a prefect score on ${subject}! Great job."`
     }
     grading(student, boolean) {
         let g = student.grade;
@@ -67,7 +67,7 @@ class Student extends Person {
         return `${this.name} has submitted a PR for ${subject}`;
     }
     sprintChallenge(subject) {
-        return `${student.name} has begun sprint challenge on ${subject}`;
+        return `${this.name} has begun sprint challenge on ${subject}`;
     }
     graduate () {
         if (this.graduated) {
@@ -84,7 +84,7 @@ class ProjectManager extends Instructor {
         this.favInstructor = favInstructor;
     }
     standUp(channel) {
-        return `${this.name} announces to {channel}, @channel standy times!​​​​​`;
+        return `${this.name} announces to ${channel}, @channel standup time!​​​​​`;
     }
     debugCode(student, subject) {
         return `${this.name} debugs ${student.name}'s code on ${subject}.`;
@@ -211,10 +211,15 @@ console.log(`//<====================LOGGING THINGS===========================>//
 console.log(everyone);
 
 
+
 space();
 console.log(`//<====================INTRODUCTIONS===========================>//`);
 console.log(sam.speak());
+console.log(devin.sprintChallenge('Javascript IV'));
 console.log(`\n${jamie.name} says "${jamie.catchPhrase}`);
+console.log(guillermo.standUp('WEB20_guillermo'));
+console.log(jamie.debugCode(alexis, 'CSS'));
+console.log(dan.demo('Javascirpt'));
 console.log(`\n${dan.name}'s speciality is ${dan.speciality.toLowerCase()}.`);
 console.log(`\n${mike.name}'s favorite subjects are ${mike.listsSubjects()}.`);
 
