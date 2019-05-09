@@ -1,4 +1,6 @@
 // CODE here for your Lambda Classes
+
+
 class Person {
     constructor({name, age, location}) {
         this.name = name;
@@ -6,9 +8,10 @@ class Person {
         this.location = location;
     }
     speak() {
-        return `Hello! my name is ${this.name}, and I am from ${this.location}.`;
+        return `Hello! my name is ${this.name}, I am ${this.age} years old, and I am from ${this.location}.`;
     }
 }
+
 
 class Instructor extends Person {
     constructor({speciality, favLanguage, catchPhrase}) {
@@ -24,6 +27,7 @@ class Instructor extends Person {
         `${this.name} says, "${student.name} got a prefect score on ${subject}! Great job."`
     }
 }
+
 
 class Student extends Person {
     constructor (previousBackground, className, favSubjects) {
@@ -43,6 +47,7 @@ class Student extends Person {
     }
 }
 
+
 class ProjectManager extends Instructor {
     constructor({gradClassName, favInstructor}) {
         super(...arguments)
@@ -58,6 +63,31 @@ class ProjectManager extends Instructor {
 }
 
 
-const john = new Instructor({name: "John", speciality: "Tacos"});
+const joe = new Person ({
+    name: "Joe",
+    age: 42,
+    location: "Texarcana"
+})
+const kairen = new Person ({
+    name: "Kairen",
+    age: 36,
+    location: "Another World"
+})
 
-console.log(john);
+const dan = new Instructor ({
+    name: "Dan",
+    age: 32,
+    location: "Devner",
+    speciality: "Green screen background",
+    favLanguage: "Javascript",
+    catchPhrase: "Uhhhmm"
+})
+
+const dustin = new Instructor ({
+    name: "Dustin",
+    age: 27,
+    location: "The real world",
+    speciality: "React coding",
+    favLanguage: "Java",
+    catchPhrase: "Done, and done"
+})
