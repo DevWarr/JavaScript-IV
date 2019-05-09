@@ -30,11 +30,12 @@ class Instructor extends Person {
 
 
 class Student extends Person {
-    constructor (previousBackground, className, favSubjects) {
+    constructor ({previousBackground, className, favSubjects, grade}) {
         super(...arguments)
         this.previousBackground = previousBackground;
         this.className = className;
         this.favSubjects = favSubjects;
+        this.grade = grade;
     }
     listsSubjects() {
         return this.favSubjects.join(', ');
@@ -67,12 +68,12 @@ const joe = new Person ({
     name: "Joe",
     age: 42,
     location: "Texarcana"
-})
+});
 const kairen = new Person ({
     name: "Kairen",
     age: 36,
     location: "Another World"
-})
+});
 
 const dan = new Instructor ({
     name: "Dan",
@@ -80,14 +81,81 @@ const dan = new Instructor ({
     location: "Devner",
     speciality: "Green screen background",
     favLanguage: "Javascript",
-    catchPhrase: "Uhhhmm"
-})
-
+    catchPhrase: "Uhhhmm..."
+});
 const dustin = new Instructor ({
     name: "Dustin",
     age: 27,
     location: "The real world",
     speciality: "React coding",
     favLanguage: "Java",
-    catchPhrase: "Done, and done"
-})
+    catchPhrase: "Done, and done."
+});
+
+
+const devin = new Student ({
+    name: "Devin",
+    age: 21,
+    location: "Texas"
+    previousBackground: "Slight HTML",
+    className: "WEB20",
+    favSubjects: ["Music, Javascript, Chemisty"],
+    grade: 80
+});
+const winnieSong = new Student({
+    name: 'Winnie Song',
+    location: 'FLushing',
+    age: 22,
+    previousBackground: `MUA`,
+    className: `web20`,
+    favSubjects: ['CSS', 'HTML', 'LESS'],
+    grade: 80
+}); 
+const alexis = new Student ({
+    name: "Alexis",
+    age: 25,
+    location: "College Station, Texas"
+    previousBackground: "Biomedical Engineering/Informatics",
+    className: "WEB20",
+    favSubjects: ['Javascript', 'Python', 'Band'],
+    grade: 80
+});
+const sam = new Sutdent ({
+    name: "Sam",
+    age: 27,
+    location: "Oregon",
+    previousBackground: "Some CSS/HTML",
+    className: "web20"
+    favSubjects: ["Physics",  "Math", "JavaScript" ],
+    grade: 80
+});
+const mike = new Student({
+    name: 'Mike VanSleen',
+    location: 'Denver',
+    age: 29,
+    previousBackground: 'A lot of things',
+    className: 'web20',
+    favSubjects: ['UI/UX', 'Javascript', 'Graphic Design'],
+    grade: 80
+});
+
+const guillermo = new ProjectManager ({
+    name: "Guillermo",
+    age: "[REDACTED]",
+    location: "Florida",
+    speciality: "Keepin' the chill vibes",
+    favLanguage: "Javascript",
+    catchPhrase: "No, that's really cool."
+    gradClassName: "WEB17",
+    favInstructor: "Josh Knell"
+});
+const jamie = new ProjectManager ({
+    name: "Jamie",
+    age: "[REDACTED]",
+    location: "In the US",
+    speciality: "Making those videos",
+    favLanguage: "Javascript",
+    catchPhrase: "My PM group probably wants me to stop making videos."
+    gradClassName: "WEB17",
+    favInstructor: "Josh Knell"
+});
