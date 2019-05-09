@@ -1,5 +1,16 @@
 // CODE here for your Lambda Classes
 
+const everyone = []
+let display = []
+function displayUpdate(arr) {
+    display = [];
+    arr.forEach(obj => {
+        if (obj.grade >= 0) {
+            display.push({"Name": obj.name, "Grade": obj.grade});
+        }
+    })
+    console.table(display);
+}
 
 class Person {
     constructor({name, age, location}) {
@@ -23,8 +34,14 @@ class Instructor extends Person {
     demo(subject) {
         `${this.name} says, "Today we are learning about ${subject}."`
     }
-    grade(student, subject) {
+    gradeGo(student, subject) {
         `${this.name} says, "${student.name} got a prefect score on ${subject}! Great job."`
+    }
+    grading(student, boolean) {
+        let g = student.grade;
+        boolean ? g = g + (Math.random() * 10 * this.name.length) : g = g - (Math.random() * 10 * this.name.length);
+        g = g < 0 ? 0 : g;
+        return `${this.name} graded ${student.name}'s project, and they now have ${g} points.`;
     }
 }
 
@@ -38,7 +55,9 @@ class Student extends Person {
         this.grade = grade;
     }
     listsSubjects() {
-        return this.favSubjects.join(', ');
+        let mesg = this.favSubjects;
+        mesg[mesg.length - 1] = `and ${mesg[mesg.length - 1]}`;
+        return mesg.join(', ');
     }
     PRAssignment(subject) {
         return `${this.name} has submitted a PR for ${subject}`;
@@ -69,20 +88,23 @@ const joe = new Person ({
     age: 42,
     location: "Texarcana"
 });
+everyone.push(joe);
 const kairen = new Person ({
     name: "Kairen",
     age: 36,
     location: "Another World"
 });
+everyone.push(kairen);
 
 const dan = new Instructor ({
     name: "Dan",
     age: 32,
     location: "Devner",
-    speciality: "Green screen background",
+    speciality: "Changing the green screen background",
     favLanguage: "Javascript",
     catchPhrase: "Uhhhmm..."
 });
+everyone.push(dan);
 const dustin = new Instructor ({
     name: "Dustin",
     age: 27,
@@ -91,17 +113,19 @@ const dustin = new Instructor ({
     favLanguage: "Java",
     catchPhrase: "Done, and done."
 });
+everyone.push(dustin);
 
 
 const devin = new Student ({
-    name: "Devin",
+    name: "Devin Warrick",
     age: 21,
-    location: "Texas"
+    location: "Texas",
     previousBackground: "Slight HTML",
     className: "WEB20",
     favSubjects: ["Music, Javascript, Chemisty"],
-    grade: 80
+    grade: 0
 });
+everyone.push(devin);
 const winnieSong = new Student({
     name: 'Winnie Song',
     location: 'FLushing',
@@ -109,26 +133,29 @@ const winnieSong = new Student({
     previousBackground: `MUA`,
     className: `web20`,
     favSubjects: ['CSS', 'HTML', 'LESS'],
-    grade: 80
+    grade: 0
 }); 
+everyone.push(winnieSong);
 const alexis = new Student ({
-    name: "Alexis",
+    name: "Alexis Carr",
     age: 25,
-    location: "College Station, Texas"
+    location: "College Station, Texas",
     previousBackground: "Biomedical Engineering/Informatics",
     className: "WEB20",
     favSubjects: ['Javascript', 'Python', 'Band'],
-    grade: 80
+    grade: 0
 });
-const sam = new Sutdent ({
-    name: "Sam",
+everyone.push(alexis);
+const sam = new Student ({
+    name: "Sam Egge",
     age: 27,
     location: "Oregon",
     previousBackground: "Some CSS/HTML",
-    className: "web20"
+    className: "web20",
     favSubjects: ["Physics",  "Math", "JavaScript" ],
-    grade: 80
+    grade: 0
 });
+everyone.push(sam);
 const mike = new Student({
     name: 'Mike VanSleen',
     location: 'Denver',
@@ -136,8 +163,9 @@ const mike = new Student({
     previousBackground: 'A lot of things',
     className: 'web20',
     favSubjects: ['UI/UX', 'Javascript', 'Graphic Design'],
-    grade: 80
+    grade: 0
 });
+everyone.push(mike);
 
 const guillermo = new ProjectManager ({
     name: "Guillermo",
@@ -145,17 +173,40 @@ const guillermo = new ProjectManager ({
     location: "Florida",
     speciality: "Keepin' the chill vibes",
     favLanguage: "Javascript",
-    catchPhrase: "No, that's really cool."
+    catchPhrase: "No, that's really cool.",
     gradClassName: "WEB17",
     favInstructor: "Josh Knell"
 });
+everyone.push(guillermo);
 const jamie = new ProjectManager ({
     name: "Jamie",
     age: "[REDACTED]",
     location: "In the US",
     speciality: "Making those videos",
     favLanguage: "Javascript",
-    catchPhrase: "My PM group probably wants me to stop making videos."
+    catchPhrase: "My PM group probably wants me to stop making videos.",
     gradClassName: "WEB17",
     favInstructor: "Josh Knell"
 });
+everyone.push(jamie);
+
+
+
+
+
+
+//<====================LOGGING THINGS===========================>//
+
+console.log(everyone);
+
+
+
+//<====================INTRODUCTIONS===========================>//
+console.log(sam.speak());
+console.log(`\n${jamie.name} says "${jamie.catchPhrase}`);
+console.log(`\n${dan.name}'s speciality is ${dan.speciality.toLowerCase()}.`);
+console.log(`${mike.name}'s favorite subjects are ${mike.listsSubjects()}.`);
+
+
+displayUpdate(everyone);
+console.log(jamie.grading(devin, false));
