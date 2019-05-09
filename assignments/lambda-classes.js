@@ -6,7 +6,7 @@ function displayUpdate(arr) {
     display = [];
     arr.forEach(obj => {
         if (obj.grade >= 0) {
-            display.push({"Name": obj.name, "Grade": obj.grade});
+            display.push({"Name": obj.name, "Grade": obj.grade, "Graduated?": obj.graduated});
         }
     })
     console.table(display);
@@ -39,20 +39,24 @@ class Instructor extends Person {
     }
     grading(student, boolean) {
         let g = student.grade;
-        boolean ? g = g + (Math.random() * 10 * this.name.length) : g = g - (Math.random() * 10 * this.name.length);
+        let mult = Math.floor(Math.random() * 20 * Math.sqrt(this.name.length));
+        boolean ? g = g + mult * 1.5 : g = g - mult;
         g = g < 0 ? 0 : g;
-        return `${this.name} graded ${student.name}'s project, and they now have ${g} points.`;
+        student.grade = g;
+        student.graduated = student.grade >= 70 ? true : false
+        return `${this.name} graded ${student.name}'s project, and they now have ${student.grade} points.`;
     }
 }
 
 
 class Student extends Person {
-    constructor ({previousBackground, className, favSubjects, grade}) {
+    constructor ({previousBackground, className, favSubjects, grade, graduated}) {
         super(...arguments)
         this.previousBackground = previousBackground;
         this.className = className;
         this.favSubjects = favSubjects;
         this.grade = grade;
+        this.graduated = graduated ? graduated : false;
     }
     listsSubjects() {
         let mesg = this.favSubjects;
@@ -64,6 +68,11 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         return `${student.name} has begun sprint challenge on ${subject}`;
+    }
+    graduate () {
+        if (this.graduated) {
+            return `${this.name} has graduated! Please remove them from the roster.\nWait... we can't? Code that in!!\n`
+        } else return `${this.name} cannot graduate yet.\n`
     }
 }
 
@@ -191,22 +200,99 @@ const jamie = new ProjectManager ({
 everyone.push(jamie);
 
 
+function space() {
+    console.log('\n\n');
+}
 
 
 
-
-//<====================LOGGING THINGS===========================>//
+console.log(`//<====================LOGGING THINGS===========================>//`);
 
 console.log(everyone);
 
 
-
-//<====================INTRODUCTIONS===========================>//
+space();
+console.log(`//<====================INTRODUCTIONS===========================>//`);
 console.log(sam.speak());
 console.log(`\n${jamie.name} says "${jamie.catchPhrase}`);
 console.log(`\n${dan.name}'s speciality is ${dan.speciality.toLowerCase()}.`);
-console.log(`${mike.name}'s favorite subjects are ${mike.listsSubjects()}.`);
+console.log(`\n${mike.name}'s favorite subjects are ${mike.listsSubjects()}.`);
 
+
+
+
+space();
+console.log(`//<====================GRADING===========================>//`);
+console.log('\n');
+
+console.log(`Here we have our students before anything has been graded:`);
+displayUpdate(everyone);
+
+
+
+
+space();
+console.log(`//<====================GRADING I===========================>//`);
+console.log('\n');
+
+console.log(guillermo.grading(devin, true));
+console.log(jamie.grading(winnieSong, true));
+console.log(jamie.grading(alexis, true));
+console.log(jamie.grading(sam, true));
+console.log(jamie.grading(mike, true));
 
 displayUpdate(everyone);
-console.log(jamie.grading(devin, false));
+
+console.log(devin.graduate());
+console.log(winnieSong.graduate());
+console.log(alexis.graduate());
+console.log(sam.graduate());
+console.log(mike.graduate());
+
+
+
+space();
+console.log(`//<====================GRADING II===========================>//`);
+console.log('\n');
+
+console.log(guillermo.grading(devin, false));
+console.log(jamie.grading(winnieSong, false));
+console.log(jamie.grading(alexis, false));
+console.log(jamie.grading(sam, false));
+console.log(jamie.grading(mike, false));
+
+displayUpdate(everyone);
+
+console.log(devin.graduate());
+console.log(winnieSong.graduate());
+console.log(alexis.graduate());
+console.log(sam.graduate());
+console.log(mike.graduate());
+
+
+
+space();
+console.log(`//<====================GRADING FINAL===========================>//`);
+console.log('\n');
+
+// Hidden extra grading so they can pass
+guillermo.grading(devin, true);
+jamie.grading(winnieSong, true);
+jamie.grading(alexis, true);
+jamie.grading(sam, true);
+jamie.grading(mike, true);
+
+
+console.log(guillermo.grading(devin, true));
+console.log(jamie.grading(winnieSong, true));
+console.log(jamie.grading(alexis, true));
+console.log(jamie.grading(sam, true));
+console.log(jamie.grading(mike, true));
+
+displayUpdate(everyone);
+
+console.log(devin.graduate());
+console.log(winnieSong.graduate());
+console.log(alexis.graduate());
+console.log(sam.graduate());
+console.log(mike.graduate());
